@@ -1,124 +1,87 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🏥 ClinicPed+
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![NestJS](https://img.shields.io/badge/Backend-NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![React Native](https://img.shields.io/badge/Mobile-React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+> **Uma solução Full Stack escalável para gestão clínica e agendamento de consultas.**
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 📖 Sobre o Projeto
 
-## Project setup
+O **ClinicPed+** é um ecossistema desenvolvido para modernizar o fluxo de atendimento em clínicas médicas. O projeto foi arquitetado com foco em **performance**, **segurança de dados** e **experiência do usuário (UX)**.
+
+Diferente de um simples CRUD, o sistema implementa regras de negócio complexas, como validação de conflitos de horário, integração com APIs externas (CEP) e controle de acesso baseado em cargos (RBAC - Role Based Access Control).
+
+---
+
+## 🏗️ Arquitetura e Decisões Técnicas
+
+O sistema foi desenhado seguindo os princípios de **Clean Architecture** e **SOLID**, garantindo que o código seja modular e testável.
+
+### 🔌 Backend (NestJS)
+A API foi construída pensando em escalabilidade vertical e horizontal.
+- **Modularização:** Separação clara entre módulos (Auth, Users, Clinics, Appointments).
+- **Security First:** Autenticação via **JWT (JSON Web Token)** e hash de senhas com **Bcrypt**.
+- **Data Integrity:** Uso de **DTOs (Data Transfer Objects)** com `class-validator` para garantir que nenhum dado inválido chegue ao banco.
+- **External Services:** Integração com API de CEP para preenchimento automático e normalização de endereços no banco de dados.
+
+### 📱 Mobile (React Native)
+O aplicativo foca na usabilidade e feedback visual imediato.
+- **State Management:** Gerenciamento de estado otimizado para evitar re-renderizações desnecessárias.
+- **UX Patterns:** Uso de máscaras (Input Masking) para CPF e Telefone, reduzindo erros de input do usuário.
+- **Feedback Visual:** Tratamento de erros amigável e loadings skeleton para melhor percepção de performance.
+
+---
+
+## ✨ Funcionalidades
+
+### 🔐 Controle de Acesso & Segurança
+- [x] Login e Registro com validação robusta.
+- [x] Proteção de rotas via **Guards** (NestJS).
+- [x] Criptografia de dados sensíveis.
+
+### 🏥 Gestão de Clínicas (Admin)
+- [x] Cadastro completo de clínicas com busca automática de endereço via CEP.
+- [x] Gerenciamento de médicos e especialidades.
+- [x] Dashboard administrativo.
+
+### 📅 Agendamento (Usuário)
+- [x] Busca de clínicas e médicos por especialidade.
+- [x] Visualização de horários disponíveis em tempo real.
+- [x] Histórico de consultas agendadas.
+
+---
+
+## 🛠️ Tech Stack
+
+| Camada | Tecnologia | Motivo da Escolha |
+| :--- | :--- | :--- |
+| **Backend** | **NestJS** | Framework opinionado que força boas práticas e arquitetura modular. |
+| **Mobile** | **React Native** | Desenvolvimento ágil cross-platform (iOS/Android) com performance nativa. |
+| **Linguagem** | **TypeScript** | Tipagem estática para reduzir bugs em tempo de compilação. |
+| **Database** | **PostgreSQL** | Robustez, suporte a transações ACID e integridade relacional. |
+| **ORM** | **Prisma / TypeORM** | Abstração segura e eficiente para queries no banco de dados. |
+
+---
+
+## 📂 Estrutura do Projeto (Monorepo Like)
 
 ```bash
-$ npm install
-```
-
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-
-
-# Clinicaped API - NestJS
-
-API REST desenvolvida em NestJS para gerenciamento de usuários, clínicas e agendamentos do sistema Clinicaped.
-
-## Tecnologias Utilizadas
-
-- Node.js  
-- NestJS  
-- TypeScript  
-- PostgreSQL  
-
-## Funcionalidades
-
-- CRUD completo para usuários, clínicas e consultas  
-- Autenticação e autorização (JWT)  
-- Validação e tratamento de erros  
-- Documentação via Swagger  
-
-## Como Executar
-
-1. Clone este repositório:  
-```bash
-git clone https://github.com/Kauasx09-Henrique/clinicaped-api-nestjs.git
-
+ClinicPed/
+├── backend/            # API Restful em NestJS
+│   ├── src/
+│   │   ├── modules/    # Módulos da aplicação (Auth, Users, Appointments)
+│   │   ├── shared/     # Serviços compartilhados e Utils
+│   │   └── main.ts     # Ponto de entrada
+│   └── test/           # Testes automatizados
+│
+└── mobile/             # Aplicação React Native
+    ├── src/
+    │   ├── components/ # Componentes reutilizáveis (Inputs, Buttons, Cards)
+    │   ├── screens/    # Telas da aplicação
+    │   ├── services/   # Integração com a API (Axios)
+    │   └── utils/      # Máscaras e Formatações
+    └── package.json
